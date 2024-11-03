@@ -1,0 +1,44 @@
+.contact-container {
+    background-color: #1a1a1a; /* Dark background for grimdark theme */
+    color: #e5e5e5; /* Light text for readability */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    font-family: 'Cinzel', serif; /* Gothic font style */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #2a2a2a; /* Input background */
+    color: #e5e5e5; /* Input text color */
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #666; /* Button background */
+    color: #fff; /* Button text */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #888; /* Button hover effect */
+}

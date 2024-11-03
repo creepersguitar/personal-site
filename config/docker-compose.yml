@@ -1,0 +1,56 @@
+version: '3.8'  # Specify the Docker Compose version
+
+services:
+  app:
+    build: .
+    container_name: imperial_lore_repository  # Name of the container
+    ports:
+      - '5000:5000'  # Map port 5000 of the container to port 5000 on the host
+    environment:
+      - DB_URI=mongodb://mongo:27017/your_database_name  # Use the mongo service defined below
+      - PORT=5000
+      - SECRET_KEY=your_super_secret_key  # Consider storing secrets in a .env file instead
+      - API_KEY=your_api_key_for_third_party_services
+      - NODE_ENV=development
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+    volumes:
+      - .:/usr/src/app  # Mount the current directory to /usr/src/app in the container
+    depends_on:
+      - mongo  # Ensure MongoDB starts before the app service
+  
+  nginx:
+    image: nginx:latest  # Use the latest Nginx image
+    container_name: nginx_server  # Name of the Nginx container
+    ports:
+      - '80:80'  # Map port 80 on the host to port 80 on the Nginx container
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Mount your nginx.conf into the container
+    depends_on:
+      - app  # Ensure the app service is started before Nginx
+
+  mongo:
+    image: mongo:latest  # Use the latest MongoDB image from Docker Hub
+    container_name: mongo_db  # Name of the MongoDB container
+    ports:
+      - '27017:27017'  # Map port 27017 of the container to port 27017 on the host
+    volumes:
+      - mongo_data:/data/db  # Use a named volume for data persistence
+  
+  db:
+    image: postgres:latest
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    environment:
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_database
+
+volumes:
+  mongo_data:  # Define the named volume for MongoDB

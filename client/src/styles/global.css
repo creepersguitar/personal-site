@@ -1,0 +1,131 @@
+/* src/styles/global.css */
+
+/* === Universal Resets and Box Sizing === */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* === Body Styling === */
+body {
+    background-color: #1a1a1a;       /* Dark background for the grimdark feel */
+    color: #e5e5e5;                  /* Light text for readability */
+    font-family: 'Cinzel', serif;    /* Gothic-style font for a Warhammer look */
+    line-height: 1.6;
+}
+
+/* === Headings and Typography === */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffcc00;                   /* Highlight color for headings */
+    font-family: 'Cinzel Decorative', serif;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* === Links === */
+a {
+    color: #ffcc00;                   /* Bright, highlighted color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e5e5e5;                   /* Lightens on hover */
+    text-decoration: underline;       /* Underline for hover */
+}
+
+/* === Layout === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* === Buttons === */
+button {
+    background-color: #444;          /* Dark button background */
+    color: #ffcc00;                  /* Highlighted button text */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;          /* Darkens slightly on hover */
+}
+
+/* === Forms === */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #333;
+    color: #e5e5e5;
+    border: 1px solid #555;
+    border-radius: 3px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ffcc00;          /* Highlighted border on focus */
+}
+
+/* === Footer === */
+footer {
+    background-color: #222;
+    color: #e5e5e5;
+    padding: 20px;
+    text-align: center;
+}
+
+/* === Grid or Flexbox Utility Classes === */
+.flex {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    p { font-size: 0.95rem; }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+    .container { padding: 10px; }
+    .flex { flex-direction: column; gap: 15px; }
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    p { font-size: 0.9rem; }
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    header, footer {
+        padding: 15px;
+    }
+}
